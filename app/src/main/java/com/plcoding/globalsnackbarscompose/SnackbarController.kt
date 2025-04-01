@@ -19,12 +19,6 @@ object SnackbarController {
     private val _events = Channel<SnackbarEvent>()
     val events = _events.receiveAsFlow()
 
-//    suspend fun sendEvent(event: SnackbarEvent) {
-//        _events.send(event)
-//    }
-
-
-
     private val _dismissEvents = Channel<Unit>() // New channel for dismissing
     val dismissEvents = _dismissEvents.receiveAsFlow()
 
