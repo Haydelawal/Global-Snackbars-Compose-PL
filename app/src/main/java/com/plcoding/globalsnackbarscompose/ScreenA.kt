@@ -19,6 +19,7 @@ fun ScreenA(
     modifier: Modifier = Modifier,
     viewModel: ScreenAViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
+
     val scope = rememberCoroutineScope()
     Column(
         modifier = modifier
@@ -47,4 +48,5 @@ fun ScreenA(
             Text(text = "Navigate to B")
         }
     }
+
 }

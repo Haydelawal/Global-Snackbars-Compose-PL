@@ -40,10 +40,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GlobalSnackbarsComposeTheme {
+
                 val snackbarHostState = remember {
                     SnackbarHostState()
                 }
                 val scope = rememberCoroutineScope()
+
                 ObserveAsEvents(
                     flow = SnackbarController.events, 
                     snackbarHostState
@@ -62,6 +64,13 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+
+                ObserveAsEvents(flow = SnackbarController.dismissEvents, snackbarHostState) {
+                    scope.launch {
+                        snackbarHostState.currentSnackbarData?.dismiss() // Dismiss from ViewModel
+                    }
+                }
+
                 Scaffold(
                     snackbarHost = {
                         SnackbarHost(
@@ -92,6 +101,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+
             }
         }
     }

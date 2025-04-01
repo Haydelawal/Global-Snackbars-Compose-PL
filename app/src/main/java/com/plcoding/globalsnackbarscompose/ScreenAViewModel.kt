@@ -6,6 +6,30 @@ import kotlinx.coroutines.launch
 
 class ScreenAViewModel: ViewModel() {
 
+//    fun showSnackbar() {
+//        viewModelScope.launch {
+//            SnackbarController.sendEvent(
+//                event = SnackbarEvent(
+//                    message = "Hello from ViewModel",
+//                    action = SnackbarAction(
+//                        name = "Click me!",
+//                        action = {
+//
+////                            SnackbarController.sendEvent(
+////                                event = SnackbarEvent(
+////                                    message = "Action pressed!"
+////                                )
+////                            )
+//
+//                            // dismiss the snack bar here
+//
+//                        }
+//                    )
+//                )
+//            )
+//        }
+//    }
+
     fun showSnackbar() {
         viewModelScope.launch {
             SnackbarController.sendEvent(
@@ -14,15 +38,20 @@ class ScreenAViewModel: ViewModel() {
                     action = SnackbarAction(
                         name = "Click me!",
                         action = {
-                            SnackbarController.sendEvent(
-                                event = SnackbarEvent(
-                                    message = "Action pressed!"
-                                )
-                            )
+
+                            dismissSnackbar()
+                           // SnackbarController.dismissSnackbar()
+
                         }
                     )
                 )
             )
+        }
+    }
+
+     fun dismissSnackbar() {
+        viewModelScope.launch {
+            SnackbarController.dismissSnackbar()  // Call the dismiss function
         }
     }
 }
